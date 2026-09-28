@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:SignalHouse.App.Controls"
+             xmlns:panels="using:SignalHouse.App.Views.Controls"
+             xmlns:conv="using:Avalonia.Data.Converters"
+             x:Class="SignalHouse.App.Views.RawEditorView">
+
+  <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="*,320">
+
+    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                Orientation="Horizontal" Spacing="8" Margin="10,10,10,4">
+      <Button Content="Open RAW File..." Command="{Binding OpenCommand}" />
+      <Button Content="Save As..." Command="{Binding SaveAsCommand}" />
+      <Button Content="Reset View" Command="{Binding ResetViewCommand}" />
+      <CheckBox Content="Auto mode" IsChecked="{Binding IsAutoMode}" Margin="16,0,0,0" VerticalAlignment="Center" />
+      <Button Content="Re-run Auto Estimate" Command="{Binding ApplyAutoEstimateCommand}" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,6">
+      <TextBlock Text="{Binding CameraInfo}" Opacity="0.7" IsVisible="{Binding CameraInfo, Converter={x:Static conv:StringConverters.IsNotNullOrEmpty}}" />
+      <TextBlock Text="Left-drag: pan  ·  Scroll: zoom  ·  Right-drag: rotate  ·  Tab: commit edit" Opacity="0.6" />
+    </StackPanel>
+
+    <Border Grid.Row="2" Grid.Column="0" Background="{DynamicResource CanvasBackgroundBrush}">
+      <controls:ImageCanvas />
+    </Border>
+
+    <Border Grid.Row="2" Grid.Column="1" Background="{DynamicResource PanelBackgroundBrush}">
+      <panels:ColorAdjustmentPanel />
+    </Border>
+
+  </Grid>
+</UserControl>

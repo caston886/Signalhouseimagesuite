@@ -1,0 +1,14 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SignalHouse.App.App"
+             RequestedThemeVariant="Dark">
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#1E1E22" />
+        <SolidColorBrush x:Key="CanvasBackgroundBrush" Color="#121214" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#4C8DFF" />
+    </Application.Resources>
+</Application>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>SignalHouse.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Image compositing / filter graph (color matrix, blur, arithmetic combine for Clarity). -->
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+
+    <!-- Pure-managed EXIF/metadata reading for RAW and JPEG files (camera make/model, ISO, shutter, aperture, capture date). -->
+    <PackageReference Include="MetadataExtractor" Version="2.8.1" />
+
+    <!-- Optional automatic subject segmentation / face detection (Passport editor).
+         Requires a .onnx model file you supply; see OnnxBackgroundRemover.cs and
+         OnnxFaceDetector.cs. Remove this package reference if you don't need the
+         automatic (non-studio-backdrop) background removal path. -->
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.18.0" />
+  </ItemGroup>
+
+</Project>

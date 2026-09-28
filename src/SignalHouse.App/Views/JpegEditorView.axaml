@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:SignalHouse.App.Controls"
+             xmlns:panels="using:SignalHouse.App.Views.Controls"
+             x:Class="SignalHouse.App.Views.JpegEditorView">
+
+  <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,320">
+
+    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                Orientation="Horizontal" Spacing="8" Margin="10">
+      <Button Content="Open Image..." Command="{Binding OpenCommand}" />
+      <Button Content="Save As..." Command="{Binding SaveAsCommand}" />
+      <Button Content="Reset View" Command="{Binding ResetViewCommand}" />
+      <TextBlock Text="Left-drag: pan  ·  Scroll: zoom  ·  Right-drag: rotate  ·  Tab: commit edit"
+                 VerticalAlignment="Center" Opacity="0.6" Margin="16,0,0,0" />
+    </StackPanel>
+
+    <Border Grid.Row="1" Grid.Column="0" Background="{DynamicResource CanvasBackgroundBrush}">
+      <controls:ImageCanvas />
+    </Border>
+
+    <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource PanelBackgroundBrush}">
+      <panels:ColorAdjustmentPanel />
+    </Border>
+
+  </Grid>
+</UserControl>

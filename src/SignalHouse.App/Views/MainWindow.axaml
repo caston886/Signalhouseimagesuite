@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="using:SignalHouse.App.Views"
+        x:Class="SignalHouse.App.Views.MainWindow"
+        Title="Signal House Imaging Suite"
+        Width="1440" Height="920"
+        WindowStartupLocation="CenterScreen">
+
+  <TabControl>
+    <TabItem Header="Passport Photo Editor">
+      <views:PassportEditorView DataContext="{Binding PassportEditor}" />
+    </TabItem>
+    <TabItem Header="JPEG Enhancer">
+      <views:JpegEditorView DataContext="{Binding JpegEditor}" />
+    </TabItem>
+    <TabItem Header="RAW Enhancer">
+      <views:RawEditorView DataContext="{Binding RawEditor}" />
+    </TabItem>
+  </TabControl>
+
+</Window>

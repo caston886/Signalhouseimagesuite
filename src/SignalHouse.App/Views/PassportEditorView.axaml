@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:SignalHouse.App.Controls"
+             xmlns:panels="using:SignalHouse.App.Views.Controls"
+             xmlns:models="using:SignalHouse.Core.Models"
+             x:Class="SignalHouse.App.Views.PassportEditorView">
+
+  <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="*,340">
+
+    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                Orientation="Horizontal" Spacing="8" Margin="10,10,10,4">
+      <Button Content="Open Photo..." Command="{Binding OpenCommand}" />
+      <Button Content="Export..." Command="{Binding ExportCommand}" />
+      <Button Content="Reset View" Command="{Binding ResetViewCommand}" />
+      <Button Content="Auto-Center on Face" Command="{Binding AutoCenterOnFaceCommand}" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                Orientation="Horizontal" Spacing="10" Margin="10,0,10,6">
+      <ComboBox ItemsSource="{Binding SizePresets}" SelectedItem="{Binding SelectedSizePreset}" Width="220">
+        <ComboBox.ItemTemplate>
+          <DataTemplate DataType="models:PassportSizePreset">
+            <TextBlock Text="{Binding Name}" />
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+
+      <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBlock Text="DPI" VerticalAlignment="Center" />
+        <NumericUpDown Value="{Binding ExportDpi}" Minimum="72" Maximum="1200" Width="100" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal" Spacing="4" Width="160">
+        <TextBlock Text="Crop zoom" VerticalAlignment="Center" />
+        <Slider Minimum="0.5" Maximum="4" Value="{Binding CropZoom}" Width="100" />
+      </StackPanel>
+    </StackPanel>
+
+    <Border Grid.Row="2" Grid.Column="0" Background="{DynamicResource CanvasBackgroundBrush}">
+      <controls:ImageCanvas />
+    </Border>
+
+    <Border Grid.Row="2" Grid.Column="1" Background="{DynamicResource PanelBackgroundBrush}">
+      <Grid RowDefinitions="Auto,*">
+
+        <StackPanel Grid.Row="0" Margin="12,12,12,0" Spacing="6">
+          <TextBlock Text="Background" FontWeight="SemiBold" />
+          <CheckBox Content="Remove background" IsChecked="{Binding RemoveBackground}" />
+          <CheckBox Content="Use automatic segmentation (needs Models/portrait_matting.onnx)"
+                     IsChecked="{Binding UseAutomaticSegmentation}" />
+
+          <TextBlock Text="Backdrop color to key out:" Opacity="0.8" Margin="0,4,0,0" />
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <Button Content="Green screen" Click="OnGreenKeyClick" />
+            <Button Content="Blue screen" Click="OnBlueKeyClick" />
+          </StackPanel>
+
+          <TextBlock Text="Replacement color:" Opacity="0.8" Margin="0,4,0,0" />
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <Button Content="White" Click="OnWhiteReplacementClick" />
+            <Button Content="Light blue" Click="OnLightBlueReplacementClick" />
+            <Button Content="Light gray" Click="OnLightGrayReplacementClick" />
+          </StackPanel>
+        </StackPanel>
+
+        <panels:ColorAdjustmentPanel Grid.Row="1" />
+      </Grid>
+    </Border>
+
+  </Grid>
+</UserControl>
